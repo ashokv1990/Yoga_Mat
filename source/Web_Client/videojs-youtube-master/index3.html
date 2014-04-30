@@ -1,0 +1,126 @@
+<html>
+    <head>
+     
+     
+     
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+     
+         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+         <link href="http://vjs.zencdn.net/4.4/video-js.css" rel="stylesheet">
+         <script src="http://vjs.zencdn.net/4.4/video.js"></script>
+         <script src=" src/media.youtube.js"></script>
+         
+
+        <script src="http://d3js.org/d3.v3.min.js" src="http://localhost:7000/videojs-youtube-master/socket.io/socket.io.js">
+
+        document.createElement('video');document.createElement('audio');document.createElement('track');
+        </script>
+
+<script src="node_modules/socket.io/node_modules/socket.io-client/dist/socket.io.js"></script>
+
+
+      </head>
+
+
+<body  >
+
+
+
+
+ 
+ <!--  controls preload="auto" width="640" height="264"    -->
+ <!--<video id="ex1" class="video-js vjs-default-skin vjs-big-play-centered"
+  width="980" height="650" 
+  poster="http://video-js.zencoder.com/oceans-clip.png"
+  data-setup='{"example_option":true}'>
+
+<source src="http://video-js.zencoder.com/oceans-clip.mp4" type='video/mp4' />
+ <source src="http://video-js.zencoder.com/oceans-clip.webm" type='video/webm' />
+ <source src="http://video-js.zencoder.com/oceans-clip.ogv" type='video/ogg' />
+
+</video> -->
+
+<!--<video id="example_video_1" class="video-js vjs-default-skin" controls 
+       preload="auto" autoplay="autoplay" loop="loop" width="980" height="650"
+       poster="http://ec2-54-227-116-247.compute-1.amazonaws.com/models/site-templates/images/cover_img/ted_cover.jpg" 
+       data-setup='{"techOrder":["youtube"], "src":"http://www.youtube.com/watch?v=xYemnKEKx0c"}'>
+</video>-->
+ <video id="vid1" src="" class="video-js vjs-default-skin" controls 
+           preload="auto" autoplay="autoplay" loop="loop" width="640" height="360" 
+           data-setup='{ "techOrder": ["youtube"], "src": "http://www.youtube.com/watch?v=xjS6SftYQaQ" }'>
+    </video>
+
+</br>
+<script>
+
+
+function timed()
+{
+
+    var socket = io.connect('http://localhost:7777');
+    
+   socket.on('news', function (data) {
+    console.log(data);
+    //alert("hey");
+    test("example_video_1");
+
+});
+
+  //alert("before socket destroy");
+  //socket.disconnect();
+    
+
+}
+
+function test(id)
+    {
+        if(!videojs(id).paused())
+        videojs(id).pause();
+        else
+            videojs(id).play();
+          
+
+     }
+
+
+/*function myTimer()
+{
+  
+  var socket = io.connect('http://localhost:7777');
+  socket.on('connect', function () {
+  //test(ex1);
+  alert("test");
+ 
+  });
+}
+*/
+
+
+//var myVar=setInterval(function(){myTimer()},1000);
+
+var myVar=setInterval(function(){timed()},1000);
+
+
+</script>
+
+<button type="button" onclick="test(example_video_1)">Pause!</button>
+
+
+
+
+
+
+<script>
+
+videojs("ex1").ready (function(){
+  // Player (this) is initialized and ready.
+  this.play();
+});
+
+
+</script>
+
+
+</body>
+
+</html>
