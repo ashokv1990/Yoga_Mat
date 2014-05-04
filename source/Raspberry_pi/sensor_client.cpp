@@ -6,16 +6,13 @@
 #include <stdlib.h>
 #include <wiringPi.h>
 #include <stdio.h>
-using namespace std;
-
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netdb.h> 
 #include <arpa/inet.h>
+
+using namespace std;
 
 void error(const char *msg)
 {
@@ -53,7 +50,7 @@ cout << "after the start" << endl;
 
 /************************ client **************************************/
 
-int sockfd, portno, n;
+   int sockfd, portno, n;
    struct sockaddr_in serv_addr;
    struct hostent *server;
 
